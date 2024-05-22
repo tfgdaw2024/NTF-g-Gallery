@@ -1,0 +1,168 @@
+# Translation of Plugins - Templately – Gutenberg &amp; Elementor Template Library: 5000+ Free &amp; Pro Ready Templates &amp; Cloud! - Stable (latest release) in Spanish (Spain)
+# This file is distributed under the same license as the Plugins - Templately – Gutenberg &amp; Elementor Template Library: 5000+ Free &amp; Pro Ready Templates &amp; Cloud! - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2024-04-28 15:28:22+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/4.0.1\n"
+"Language: es\n"
+"Project-Id-Version: Plugins - Templately – Gutenberg &amp; Elementor Template Library: 5000+ Free &amp; Pro Ready Templates &amp; Cloud! - Stable (latest release)\n"
+
+#: includes/Core/Importer/Utils/Utils.php:14
+msgid "JSON file not exists. "
+msgstr "El archivo JSON no existe. "
+
+#: includes/Core/Importer/Runners/Templates.php:24
+msgid "Importing Templates (i.e: Header, Footer, etc)"
+msgstr "Importación de plantillas (es decir, cabecera, pie de página, etc)"
+
+#: includes/Core/Importer/Runners/Taxonomies.php:21
+msgid "Importing Taxonomies"
+msgstr "Importación de taxonomías"
+
+#: includes/Core/Importer/Runners/Taxonomies.php:13
+msgid "Taxonomies"
+msgstr "Taxonomías"
+
+#: includes/Core/Importer/Runners/GutenbergContent.php:20
+msgid "Block Editor Content"
+msgstr "Contenido del editor de bloques"
+
+#: includes/Core/Importer/Runners/Finalizer.php:35
+#: includes/Core/Importer/Runners/Finalizer.php:39
+msgid "Finalizing Your Imports"
+msgstr "Finalizando tus importaciones"
+
+#: includes/Core/Importer/Runners/ExtraContent.php:30
+msgid "Importing Forms and Others Extra Contents"
+msgstr "Importación de formularios y otros contenidos adicionales"
+
+#: includes/Core/Importer/Runners/ExtraContent.php:18
+msgid "Extra Contents"
+msgstr "Contenidos adicionales"
+
+#: includes/Core/Importer/Runners/ElementorContent.php:31
+msgid "Importing Elementor Templates (Pages, Posts etc)"
+msgstr "Importación de plantillas de Elementor (páginas, entradas, etc)"
+
+#: includes/Core/Importer/Runners/WPContent.php:28
+msgid "Importing Pages, Posts, Products, Navigation, etc"
+msgstr "Importación de páginas, entradas, productos, navegación, etc"
+
+#: includes/Core/Importer/Runners/GutenbergContent.php:36
+msgid "Importing Gutenberg Templates (Pages, Posts etc)"
+msgstr "Importación de plantillas de Gutenberg (páginas, entradas, etc)"
+
+#: includes/Core/Importer/Runners/Customizer.php:29
+msgid "Updating customizer settings."
+msgstr "Actualización de los ajustes del personalizador."
+
+#: includes/Core/Importer/Runners/Customizer.php:17
+msgid "Customizer"
+msgstr "Personalizador"
+
+#: includes/Core/Importer/Runners/BaseRunner.php:51
+msgid "Platform is not specified. Please try again after specifying the platform."
+msgstr "La plataforma no está especificada. Inténtalo de nuevo después de especificar la plataforma."
+
+#: includes/Core/Importer/Runners/WPContent.php:24
+msgid "WordPress Contents"
+msgstr "Contenidos de WordPress"
+
+#: includes/API/SavedTemplates.php:29
+msgid "Sorry, you do not have permission to delete this template."
+msgstr "Lo siento, no tienes permisos para eliminar esta plantilla."
+
+#: includes/Core/Admin.php:279
+msgid "🔥 Get access to 5,000+ Ready Templates & save up to 65% OFF now"
+msgstr "🔥 Accede a más de 5.000 plantillas listas y ahorra hasta un 65% de DESCUENTO ahora"
+
+#: includes/Core/Platform/Elementor.php:84
+msgid "You have to install/activate %s to import %s Template."
+msgstr "Tienes que instalar/activar %s para importar la plantilla %s."
+
+#: includes/Core/Importer/Runners/Templates.php:20 assets/js/templately.js:1
+msgid "Templates"
+msgstr "Plantillas"
+
+#: includes/Core/Admin.php:52 assets/js/templately.js:1
+msgid "View Template"
+msgstr "Ver plantilla"
+
+#: includes/Builder/Source.php:220 assets/js/templately.js:1
+msgid "All"
+msgstr "Todo"
+
+#: includes/Builder/Types/Page.php:18 assets/js/templately.js:1
+msgid "Pages"
+msgstr "Páginas"
+
+#: includes/Core/Admin.php:51 assets/js/templately.js:1
+msgid "Edit Template"
+msgstr "Editar la plantilla"
+
+#. Description of the plugin
+#: templately.php
+msgid "The Best Templates Cloud for Elementor & Gutenberg. Get access to stunning templates, WorkSpace, Cloud Library & many more."
+msgstr "La mejor nube de plantillas para Elementor y Gutenberg. Obtén acceso a impresionantes plantillas, espacio de trabajo, biblioteca en la nube y mucho más."
+
+#: includes/Utils/Installer.php:102
+msgid "Unable to connect to the filesystem. Please confirm your credentials."
+msgstr "No ha sido posible conectar con el sistema de archivos. Por favor, confirma tus credenciales."
+
+#: includes/API/Dependencies.php:109
+msgid "You have the plugin installed."
+msgstr "Tienes el plugin instalado."
+
+#: includes/API/Items.php:321 includes/Builder/Types/BaseTemplate.php:200
+#: includes/Utils/Base.php:31 includes/Utils/Base.php:42
+#: assets/js/templately.js:1
+msgid "Something went wrong."
+msgstr "Algo ha ido mal."
+
+#: includes/API/Login.php:76 includes/API/SignUp.php:40
+msgid "Make sure you have given a valid email address."
+msgstr "Asegúrate de que has dado una dirección de correo electrónico válida."
+
+#. Plugin Name of the plugin
+#. Author of the plugin
+#: templately.php includes/Core/Admin.php:359
+#: includes/Core/Platform/Gutenberg.php:82 views/header.php:7
+#: assets/js/elementor.js:1
+msgid "Templately"
+msgstr "Templately"
+
+#. Plugin URI of the plugin
+#: templately.php
+msgid "https://templately.com"
+msgstr "https://templately.com"
+
+#. Author URI of the plugin
+#: templately.php
+msgid "https://templately.com/"
+msgstr "https://templately.com/"
+
+#: includes/Core/Admin.php:360
+msgid "requires"
+msgstr "necesita que"
+
+#: includes/Core/Admin.php:362
+msgid "plugin to be installed and activated. Please install Elementor to continue."
+msgstr "sea instalado y activado. Por favor, instala Elementor para continuar."
+
+#: views/header.php:10
+msgid "Version"
+msgstr "Versión"
+
+#: includes/Core/Platform/Elementor.php:185
+msgid "Successfully Deleted."
+msgstr "Borrado correctamente."
+
+#: includes/API/Dependencies.php:82 includes/Core/Admin.php:361
+#: includes/Core/Importer/Runners/ElementorContent.php:15
+#: assets/js/templately.js:1
+msgid "Elementor"
+msgstr "Elementor"
