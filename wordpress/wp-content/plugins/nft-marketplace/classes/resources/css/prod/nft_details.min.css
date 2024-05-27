@@ -1,0 +1,325 @@
+.loader,
+.loaderwholescreen {
+    animation: 1s linear infinite spin
+}
+
+#loaderwholescreen,
+#myModal {
+    position: fixed;
+    display: none
+}
+
+#myModal,
+.logo-container,
+.modal-content {
+    text-align: center
+}
+
+.buy-now-button,
+.connect-wallet-button,
+.modal-btn {
+    color: #fff;
+    cursor: pointer
+}
+
+.nft-details-ui-wrapper {
+    max-width: 1250px !important
+}
+
+.connect-wallet-button {
+    position: absolute;
+    top: -93px;
+    right: 71px;
+    padding: 13px 55px;
+    background-color: #000;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .8);
+    z-index: 1
+}
+
+.container,
+.right-section,
+.tab-content #details-content div {
+    position: relative
+}
+
+.nft-image {
+    width: 503px;
+    height: 557px;
+    box-shadow: 5px 5px 45px rgba(.8, .8, .8, .8);
+    border-radius: 15px
+}
+
+body {
+    margin: 0;
+    padding: 0
+}
+
+.flex-container {
+    display: flex;
+    align-items: flex-start
+}
+
+.left-section {
+    flex: 0.9;
+    margin-right: 70px;
+}
+
+.right-section {
+    flex: 1.1;
+    height: 100%;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    border-radius: 15px
+}
+
+.right-section-top {
+    height: 60%
+}
+
+.right-section-bottom {
+    height: 50%
+}
+
+.right-section-content {
+    background-color: #f0f0f0;
+    padding: 20px;
+    height: 186px
+}
+
+.logo-text-container h4,
+.right-section-content h3,
+.tab-content .key,
+.tab-content .value {
+    font-family: sans-serif
+}
+
+.right-section-image {
+    background-size: cover;
+    height: 100%
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px
+}
+
+.small-logo {
+    height: 34px;
+    width: auto;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px
+}
+
+.logo-text-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px
+}
+
+.logo-text {
+    font-size: 14px;
+    margin-left: 10px
+}
+
+.right-section-bottom {
+    margin-top: 3px
+}
+
+.right-section-tabs {
+    display: flex;
+    background-color: #fff;
+    width: fit-content;
+    margin: 5px;
+    gap: 10px
+}
+
+.tab {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    background-color: #fff
+}
+
+.tab.active {
+    background-color: #6857d1;
+    color: #fff
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 157px;
+    overflow-y: auto;
+    box-sizing: content-box
+}
+
+.tab-content .key-attributes,
+.tab-content .value-attributes {
+    font-size: large;
+    font-family: sans-serif
+}
+
+.tab-content #details-content div::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+    background-color: #ccc;
+    transform: translateX(-50%)
+}
+
+.key-value-pair,
+.key-value-pair-attributes {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 12px
+}
+
+.key {
+    flex: 1.2;
+    font-weight: 600;
+    font-size: 17px;
+    font-family: ui-rounded
+}
+
+.value {
+    flex: 2;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: ui-rounded
+}
+
+.key-attributes,
+.value-attributes {
+    font-size: 20px;
+    font-family: ui-rounded
+}
+
+.key-attributes {
+    flex: 1.2;
+    font-weight: 600
+}
+
+.value-attributes {
+    flex: 2;
+    font-weight: 400
+}
+
+.price-container {
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+    padding: 20px 10px
+}
+
+.price-box {
+    padding: 10px;
+    border-radius: 5px
+}
+
+.listing-price-input {
+    width: 75%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px
+}
+
+.buy-now-button {
+    padding: 13px 55px;
+    background-color: #6857d1;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .8)
+}
+
+.loader {
+    display: none;
+    position: absolute;
+    top: 15%;
+    left: 41%;
+    transform: translate(-50%, -50%);
+    border: 4px solid #fff;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px
+}
+
+#myModal,
+.loaderwholescreen {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+#loaderwholescreen {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(113 113 199 / 50%);
+    z-index: 9999
+}
+
+.loaderwholescreen {
+    position: absolute;
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #336ab9;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0)
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+#myModal {
+    z-index: 10000;
+    background-color: #bcb6b6;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5)
+}
+
+.modal-footer,
+.modal-header {
+    display: flex;
+    flex-direction: column
+}
+
+.check-logo {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto 10px;
+    height: 65px;
+    border-radius: 45%
+}
+
+.modal-btn {
+    padding: 2px 28px;
+    background-color: #3498db;
+    border: none;
+    margin-top: 139px;
+    margin-right: 135px
+}

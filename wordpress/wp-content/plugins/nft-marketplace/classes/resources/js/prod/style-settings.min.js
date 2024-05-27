@@ -1,0 +1,1 @@
+$=jQuery,$(document).ready((()=>{$(".monft-notice-close").click((()=>{$(".monft-notice").slideToggle()}))}));
