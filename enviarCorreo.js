@@ -21,7 +21,7 @@ function enviarCorreoBienvenida() {
         MailApp.sendEmail({
           to: email,
           subject: 'Bienvenido a NTF-g-Gallery',
-          body: 'Hola ' + nombre + ',\n\nGracias por registrarte en NTF-g-Gallery. Estamos encantados de tenerte con nosotros.\n\nSaludos,el equipo de NTF-g-Gallery'
+          body: 'Hola ' + nombre + ',\n\nGracias por registrarte en NTF-g-Gallery. Estamos encantados de tenerte con nosotros.\n\nSaludos, el equipo de NTF-g-Gallery'
         });
 
         // Enviar notificación al administrador
