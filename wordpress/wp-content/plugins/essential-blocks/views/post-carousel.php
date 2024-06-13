@@ -12,8 +12,14 @@
         'eb-post-carousel',
         'init-' . $blockId
     ];
+
+      $wrapper_attributes = get_block_wrapper_attributes(
+		[
+			'class' => 'root-' . $blockId,
+		]
+	);
 ?>
-<div <?php echo wp_kses_data( get_block_wrapper_attributes()); ?>>
+<div <?php echo wp_kses_data( $wrapper_attributes); ?>>
     <div class="eb-parent-wrapper eb-parent-<?php echo esc_attr( $blockId ); ?><?php echo esc_attr( $classHook ); ?>">
         <div
             class="<?php echo esc_attr( implode( ' ', $_wrapper_classes ) ); ?> eb-post-carousel-wrapper"

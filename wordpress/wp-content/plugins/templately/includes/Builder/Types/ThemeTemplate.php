@@ -28,5 +28,11 @@ abstract class ThemeTemplate extends BaseTemplate {
 		}
 		$content = $this->get_content();
 		echo do_blocks( $content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
+		if(function_exists('wp_script_modules')){
+			add_action( 'wp_footer', array( wp_script_modules(), 'print_import_map' ) );
+			add_action( 'wp_footer', array( wp_script_modules(), 'print_enqueued_script_modules' ) );
+			add_action( 'wp_footer', array( wp_script_modules(), 'print_script_module_preloads' ) );
+		}
 	}
 }

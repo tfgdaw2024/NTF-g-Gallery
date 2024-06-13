@@ -26,7 +26,8 @@ import { isEmpty } from "lodash";
 
 const {
     duplicateBlockIdFix,
-    EBDisplayIcon
+    EBDisplayIcon,
+    BlockProps
 } = window.EBControls;
 
 import Style from "./style";
@@ -55,6 +56,12 @@ export default function Edit(props) {
         lightboxPlayIconType,
         lightboxPlayIconlib,
     } = attributes;
+
+    const enhancedProps = {
+        ...props,
+        blockPrefix: 'eb-advanced-video',
+        style: <Style {...props} />
+    };
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
@@ -134,9 +141,8 @@ export default function Edit(props) {
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
-            <div {...blockProps}>
+            <BlockProps.Edit {...enhancedProps}>
                 <div className="eb-selector-overlay"></div> {/* Only for Editor */}
-                <Style {...props} />
                 <div className={`eb-parent-wrapper eb-parent-${blockId} ${classHook}`}>
                     <div className={`eb-advanced-video-wrapper ${blockId} ${videoOptions}`} data-id={blockId}>
                         {videoOptions != "lightbox" && (
@@ -206,7 +212,7 @@ export default function Edit(props) {
                         )}
                     </div>
                 </div>
-            </div>
+            </BlockProps.Edit >
         </>
     );
 }

@@ -27,7 +27,7 @@ const deprecated = [
                 <div {...useBlockProps.save()}>
                     <div className={`eb-parent-wrapper eb-parent-${blockId} ${classHook}`}>
                         <div className={`${blockId} eb-social-links-wrapper`}>
-                            <SocialLinksDeprecated3 profilesOnly={profilesOnly} icnEffect={icnEffect} />
+                            <SocialLinks profilesOnly={profilesOnly} icnEffect={icnEffect} />
                         </div>
                     </div>
                 </div>

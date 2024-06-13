@@ -348,7 +348,7 @@ class LocationManager {
 			foreach ( $template_locations as $location ) {
 				$template = templately()->theme_builder::$conditions_manager->get_templates_by_location( $location );
 				if ( empty( $template ) ) {
-					return;
+					continue;
 				}
 				$template = array_pop( $template );
 				if ( $template->platform == 'gutenberg' ) {

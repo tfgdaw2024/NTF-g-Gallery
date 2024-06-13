@@ -3,27 +3,23 @@
  */
 import { __ } from "@wordpress/i18n";
 import { useEffect } from "@wordpress/element";
-import { useBlockProps, MediaUpload } from "@wordpress/block-editor";
-import { Button } from "@wordpress/components";
-import { select } from "@wordpress/data";
 /**
  * Internal dependencies
  */
 
 const {
-    duplicateBlockIdFix,
+    BlockProps,
     BrowseTemplate,
     DynamicInputValueHandler,
     ImgPlaceholder
 } = window.EBControls;
 
 import classnames from "classnames";
-
 import Inspector from "./inspector";
 import SocialLinks from "./components/social-links";
 import Style from "./style";
 import { TeamMembersIcon } from "./icon";
-import { Templates } from './templates/templates'
+import { Templates } from './templates/templates';
 
 export default function Edit(props) {
     const {
@@ -127,31 +123,12 @@ export default function Edit(props) {
         setAttributes({ profilesOnly });
     }, [socialDetails]);
 
-
-
-    useEffect(() => {
-        // this codes is for creating a unique blockId for each block's unique className
-        const BLOCK_PREFIX = "eb-team-member";
-        duplicateBlockIdFix({
-            BLOCK_PREFIX,
-            blockId,
-            setAttributes,
-            select,
-            clientId,
-        });
-
-        //
-        if (/essential\-blocks.assets\/images\/user\.jpg/gi.test(imageUrl || " ")
-        ) {
-            setAttributes({
-                imageUrl: `${EssentialBlocksLocalize.eb_plugins_url}assets/images/user.jpg`,
-            });
-        }
-    }, []);
-
-    const blockProps = useBlockProps({
-        className: classnames(className, `eb-guten-block-main-parent-wrapper`),
-    });
+    // you must declare this variable
+    const enhancedProps = {
+        ...props,
+        blockPrefix: 'eb-team-member',
+        style: <Style {...props} />
+    };
 
     return (
         <>
@@ -161,8 +138,7 @@ export default function Edit(props) {
                     setAttributes={setAttributes}
                 />
             )}
-            <div {...blockProps}>
-                <Style {...props} />
+            <BlockProps.Edit {...enhancedProps}>
 
                 <BrowseTemplate
                     {...props}
@@ -334,7 +310,7 @@ export default function Edit(props) {
                         </div>
                     </>
                 )}
-            </div>
+            </BlockProps.Edit>
         </>
     );
 }

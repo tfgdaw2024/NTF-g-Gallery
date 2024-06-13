@@ -30,6 +30,7 @@ import {
     DOTS_SIZE,
     SLIDES_GAP,
     DOT_PRESETS,
+    READMORE_BORDER_SHADOW
 } from "./constants/constants";
 
 // import {
@@ -513,6 +514,24 @@ const attributes = {
         type: "string",
         default: "",
     },
+    ...generateBorderShadowAttributes(READMORE_BORDER_SHADOW, {
+        noShadow: true,
+        defaultBdrColor: "#F445FF",
+        defaultBdrStyle: "none",
+        bdrDefaults: {
+            top: 1,
+            right: 1,
+            bottom: 1,
+            left: 1,
+        },
+        rdsDefaults: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+        },
+        // noBorder: true,
+    }),
 };
 
 export default attributes;

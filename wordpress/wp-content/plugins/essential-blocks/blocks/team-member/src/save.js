@@ -1,9 +1,6 @@
-import { useBlockProps, RichText } from "@wordpress/block-editor";
+import { RichText } from "@wordpress/block-editor";
 import SocialLinks from "./components/social-links";
-
-const {
-    ImgPlaceholder
-} = window.EBControls;
+const { BlockProps, ImgPlaceholder, sanitizeURL } = window.EBControls;
 
 export default function Save({ attributes }) {
     const {
@@ -36,7 +33,7 @@ export default function Save({ attributes }) {
     }
 
     return (
-        <div {...useBlockProps.save()}>
+        <BlockProps.Save attributes={attributes}>
             <div
                 className={`eb-parent-wrapper eb-parent-${blockId} ${classHook}`}
             >
@@ -46,7 +43,7 @@ export default function Save({ attributes }) {
                             {avatarURL && (
                                 <a
                                     // className={`eb-button-anchor`}
-                                    href={avatarURL ? avatarURL : ""}
+                                    href={avatarURL ? sanitizeURL(avatarURL) : ""}
                                     {...(newWindow && { target: "_blank" })}
                                     rel="noopener"
                                 >
@@ -180,6 +177,6 @@ export default function Save({ attributes }) {
                     </div>
                 </div>
             </div>
-        </div>
+        </BlockProps.Save>
     );
 }

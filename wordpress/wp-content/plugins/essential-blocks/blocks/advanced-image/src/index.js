@@ -17,7 +17,6 @@ ebConditionalRegisterBlockType(metadata, {
         __("Image", "essential-blocks"),
         __("Image block", "essential-blocks"),
         __("Advanced Image", "essential-blocks"),
-        __("Image block", "essential-blocks"),
         __("Single image", "essential-blocks"),
         __("Site Logo", "essential-blocks"),
         __("Featued image", "essential-blocks"),

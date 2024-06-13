@@ -1,4 +1,4 @@
-import { useBlockProps } from "@wordpress/block-editor";
+const { sanitizeURL, BlockProps } = window.EBControls;
 
 const Save = ({ attributes }) => {
     const {
@@ -22,7 +22,8 @@ const Save = ({ attributes }) => {
         enableIsotope,
         enableLoadMore,
         loadmoreBtnText,
-        imagesPerPage,
+        imagesPerPageCount,
+        enableInfiniteScroll
     } = attributes;
 
     if (sources.length === 0) return null;
@@ -39,7 +40,7 @@ const Save = ({ attributes }) => {
     }
 
     return (
-        <div {...useBlockProps.save()}>
+        <BlockProps.Save attributes={attributes}>
             <div
                 className={`eb-parent-wrapper eb-parent-${blockId} ${classHook}`}
             >
@@ -146,7 +147,7 @@ const Save = ({ attributes }) => {
                                             : addCustomLink &&
                                                 source.customLink &&
                                                 source.isValidUrl
-                                                ? source.customLink
+                                                ? sanitizeURL(source.customLink)
                                                 : "#"
                                     }
                                     {...lightBoxHtml}
@@ -167,10 +168,22 @@ const Save = ({ attributes }) => {
                 </div>
 
                 {enableLoadMore && (
-                    <button data-images-per-page={imagesPerPage} data-loadmore={enableLoadMore} className="eb-img-gallery-loadmore">{loadmoreBtnText}</button>
+                    <>
+                        <button
+                            {...(enableInfiniteScroll ? { disabled: true } : {})}
+                            data-images-per-page={imagesPerPageCount}
+                            data-loadmore={enableLoadMore}
+                            data-infinite-scroll={enableInfiniteScroll}
+                            className={`eb-img-gallery-loadmore ${enableInfiniteScroll ? 'loadmore-disable' : ''}`}>
+                            {enableInfiniteScroll && (
+                                <img className="eb-install-loader" src={`${EssentialBlocksLocalize.eb_plugins_url}/assets/images/loading.svg`} />
+                            )}
+                            {loadmoreBtnText}
+                        </button>
+                    </>
                 )}
             </div>
-        </div>
+        </BlockProps.Save>
     );
 };
 

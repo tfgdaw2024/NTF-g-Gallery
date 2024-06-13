@@ -194,7 +194,7 @@ abstract class BaseTemplate {
 			return $this->platform_data->get_edit_url();
 		}
 
-		$link = get_edit_post_link( $this->get_main_id() );
+		$link = get_edit_post_link( $this->get_main_id(), 'link' );
 
 		if ( ! $link ) {
 			return new WP_Error( 'went_wrong', __( 'Something went wrong.' ) );

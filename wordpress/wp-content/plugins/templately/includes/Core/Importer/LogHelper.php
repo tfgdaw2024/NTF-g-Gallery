@@ -38,13 +38,22 @@ trait LogHelper {
 		// Log the data into debug log file
 		$this->debug_log( $data );
 
-		echo "event: message\n";
-		echo 'data: ' . wp_json_encode( $data ) . "\n\n";
+		$log = get_transient( 'templately_fsi_log' ) ?: [];
+		$log[] = $data;
+		set_transient( 'templately_fsi_log', $log, 15 * MINUTE_IN_SECONDS );
 
-		// Extra padding.
-		echo esc_html( ':' . str_repeat( ' ', 2048 ) . "\n\n" );
+		if(Helper::should_flush()){
+			echo "event: message\n";
+			echo 'data: ' . wp_json_encode( $data ) . "\n\n";
 
-		flush();
+			// Extra padding.
+			echo esc_html( ':' . str_repeat( ' ', 2048 ) . "\n\n" );
+
+			flush();
+		}
+		else if($data['action'] === 'complete' || $data['action'] === 'error'){
+			wp_send_json( $data );
+		}
 	}
 
 	/**

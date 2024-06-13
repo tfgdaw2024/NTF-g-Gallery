@@ -6,8 +6,6 @@ import { useEffect } from "@wordpress/element";
 import {
     BlockControls,
     AlignmentToolbar,
-    RichText,
-    useBlockProps,
 } from "@wordpress/block-editor";
 import { select } from "@wordpress/data";
 import { useEntityProp, store as coreStore } from '@wordpress/core-data';
@@ -15,17 +13,15 @@ import { useEntityProp, store as coreStore } from '@wordpress/core-data';
 /**
  * Internal depencencies
  */
-import classnames from "classnames";
-
 import Inspector from "./inspector";
 
 /**
  * External depencencies
  */
 const {
-    duplicateBlockIdFix,
     DynamicInputValueHandler,
-    EBDisplayIcon
+    EBDisplayIcon,
+    BlockProps
 } = window.EBControls;
 
 import Style from "./style";
@@ -34,15 +30,10 @@ export default function Edit(props) {
     const {
         attributes,
         setAttributes,
-        className,
-        clientId,
         isSelected,
-        name
     } = props;
     const {
-        resOption,
         blockId,
-        blockMeta,
         preset,
         align,
         tagName,
@@ -60,22 +51,23 @@ export default function Edit(props) {
         currentPostType
     } = attributes;
 
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        const BLOCK_PREFIX = "eb-advance-heading";
-        duplicateBlockIdFix({
-            BLOCK_PREFIX,
-            blockId,
-            setAttributes,
-            select,
-            clientId,
-        });
 
-    }, []);
+    // you must declare this variable
+    const enhancedProps = {
+        ...props,
+        blockPrefix: 'eb-advance-heading',
+        style: <Style {...props} />
+    };
 
     useEffect(() => {
-        const postId = select("core/editor").getCurrentPostId();
-        const postType = select("core/editor").getCurrentPostType();
+        if(source == undefined) {
+            setAttributes({source: 'custom'})
+        }
+    },[])
+
+    useEffect(() => {
+        const postId = select("core/editor")?.getCurrentPostId();
+        const postType = select("core/editor")?.getCurrentPostType();
 
         if (postId) {
             setAttributes({
@@ -84,10 +76,6 @@ export default function Edit(props) {
             });
         }
     }, [source])
-
-    const blockProps = useBlockProps({
-        className: classnames(className, `eb-guten-block-main-parent-wrapper`),
-    });
 
     const [rawTitle = '', setTitle, fullTitle] = useEntityProp(
         'postType',
@@ -116,8 +104,7 @@ export default function Edit(props) {
                 </>
             )}
 
-            <div {...blockProps}>
-                <Style {...props} />
+            <BlockProps.Edit {...enhancedProps}>
 
                 {source == 'dynamic-title' && currentPostId == 0 && (
                     <div className="eb-loading" >
@@ -234,7 +221,7 @@ export default function Edit(props) {
                         </div>
                     </>
                 )}
-            </div>
+            </BlockProps.Edit>
         </>
     );
 }

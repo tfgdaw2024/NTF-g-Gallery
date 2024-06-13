@@ -1,5 +1,5 @@
-import { RichText, useBlockProps } from "@wordpress/block-editor";
-
+import { RichText } from "@wordpress/block-editor";
+const { sanitizeURL, BlockProps } = window.EBControls;
 const save = ({ attributes }) => {
     // const { blockId, showAfterDismiss, title, text } = attributes;
 
@@ -31,7 +31,7 @@ const save = ({ attributes }) => {
     if (imageURL === "") return null;
 
     return (
-        <div {...useBlockProps.save()}>
+        <BlockProps.Save attributes={attributes}>
             <div className={`eb-parent-wrapper eb-parent-${blockId} ${classHook}`}>
                 <figure
                     className={`eb-advanced-image-wrapper ${blockId} img-style-${stylePreset} ${captionStyle} caption-horizontal-${horizontalAlign} caption-vertical-${verticalAlign} ${verticalAlignCap2} ${hoverEffect}`}
@@ -41,7 +41,7 @@ const save = ({ attributes }) => {
                         {enableLink && (
                             <a
                                 className={"eb-advimg-link"}
-                                href={imageLink}
+                                href={sanitizeURL(imageLink)}
                                 target={linkTarget}
                                 rel={linkTarget === "_blank" ? "noopener" : undefined}
                             >
@@ -60,7 +60,7 @@ const save = ({ attributes }) => {
                         )}
                 </figure>
             </div>
-        </div>
+        </BlockProps.Save>
     );
 };
 

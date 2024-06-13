@@ -1,5 +1,4 @@
-import { useBlockProps } from "@wordpress/block-editor";
-
+const { BlockProps } = window.EBControls;
 export default function Save({ attributes }) {
     const {
         blockId,
@@ -28,7 +27,9 @@ export default function Save({ attributes }) {
     }
 
     return (
-        <div {...useBlockProps.save()}>
+        <BlockProps.Save
+            attributes={attributes}
+        >
             <div
                 className={`eb-parent-wrapper eb-parent-${blockId} ${classHook}`}
             >
@@ -93,6 +94,6 @@ export default function Save({ attributes }) {
                     </div>
                 </div>
             </div>
-        </div>
+        </BlockProps.Save>
     );
 }

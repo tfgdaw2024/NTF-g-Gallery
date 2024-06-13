@@ -1,5 +1,5 @@
-import { useBlockProps, InnerBlocks, RichText } from "@wordpress/block-editor";
-
+import { InnerBlocks, RichText } from "@wordpress/block-editor";
+const { BlockProps } = window.EBControls;
 export default function save({ attributes }) {
     const {
         blockId,
@@ -12,7 +12,7 @@ export default function save({ attributes }) {
     } = attributes;
 
     return (
-        <div {...useBlockProps.save()}>
+        <BlockProps.Save attributes={attributes}>
             <div
                 className={`eb-parent-wrapper eb-parent-${blockId} ${classHook}`}
             >
@@ -68,6 +68,6 @@ export default function save({ attributes }) {
                     </div>
                 </div>
             </div>
-        </div >
+        </BlockProps.Save>
     );
 }

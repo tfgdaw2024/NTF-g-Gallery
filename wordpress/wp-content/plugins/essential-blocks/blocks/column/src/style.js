@@ -262,7 +262,7 @@ export default function Style(props) {
     const desktopAllStylesFrontEnd = softMinifyCssStrings(`
 		${desktopAllStylesCommon}
 
-		.eb-parent-${blockId}{
+		.root-${blockId}{
 			${colAli ? `align-self:${colAli} !important;` : ""}
 			${wrapWidthDesktop}
 
@@ -275,7 +275,7 @@ export default function Style(props) {
 			${wrpBdShdStyesDesktop}
 			transition: all .5s, ${wrpBgTransitionStyle}, ${wrpBdShdTransitionStyle};
 		}
-		.eb-parent-${blockId}:hover{
+		.root-${blockId}:hover{
 			${wrpHoverBackgroundStylesDesktop}
 			${wrpBdShdStylesHoverDesktop}
 		}
@@ -285,7 +285,7 @@ export default function Style(props) {
     const tabAllStylesFrontEnd = softMinifyCssStrings(`
 		${tabAllStylesCommon}
 
-		.eb-parent-${blockId}{
+		.root-${blockId}{
 			width: calc(${tabWidthRange ? tabWidthRange : (desktopRange !== 100 ? 50 : 100)}% - ${calculateGap(columnGap.tab, columnNumber.tab)}px);
 
 			${!isColumnOrder_Custom_Tab || columnOrderTab === undefined ? "order: unset;" : `order: ${columnOrderTab};`}
@@ -296,7 +296,7 @@ export default function Style(props) {
 			${wrpBackgroundStylesTab}
 			${wrpBdShdStyesTab}
 		}
-		.eb-parent-${blockId}:hover{
+		.root-${blockId}:hover{
 			${wrpHoverBackgroundStylesTab}
 			${wrpBdShdStylesHoverTab}
 		}
@@ -306,7 +306,7 @@ export default function Style(props) {
     const mobileAllStylesFrontEnd = softMinifyCssStrings(`
 		${mobileAllStylesCommon}
 
-		.eb-parent-${blockId}{
+		.root-${blockId}{
 			width: calc(${mobileWidthRange ? mobileWidthRange : 100}% - ${calculateGap(columnGap.mobile, columnNumber.mobile)}px);
 
 			${!isColumnOrder_Custom_Mobile || columnOrderMobile === undefined ? "order: unset;" : `order: ${columnOrderMobile};`}
@@ -317,7 +317,7 @@ export default function Style(props) {
 			${wrpBackgroundStylesMobile}
 			${wrpBdShdStyesMobile}
 		}
-		.eb-parent-${blockId}:hover{
+		.root-${blockId}:hover{
 			${wrpHoverBackgroundStylesMobile}
 			${wrpBdShdStylesHoverMobile}
 		}

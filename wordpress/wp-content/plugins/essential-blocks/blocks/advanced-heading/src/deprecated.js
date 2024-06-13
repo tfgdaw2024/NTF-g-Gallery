@@ -208,7 +208,7 @@ const deprecated = [
 
                         </div>
                     </div>
-                </div >
+                </div>
             );
         },
     },

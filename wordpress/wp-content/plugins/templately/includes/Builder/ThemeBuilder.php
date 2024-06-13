@@ -189,6 +189,17 @@ class ThemeBuilder extends Base {
 		if ( Document::TYPE_META_KEY === $meta_key && Source::CPT === get_post_type( $object_id ) ) {
 			remove_filter( 'get_post_metadata', [ $this, 'modify_template_type' ] );
 			$value = get_post_meta( $object_id, Source::TYPE_META_KEY, $single );
+			$arr = [
+				'post'            => 'single-post',
+				'page'            => 'single-page',
+				'error'           => 'error-404',
+				'product_single'  => 'product',
+				'product_archive' => 'product-archive',
+				'course_single'   => 'single-post',
+				'course_archive'  => 'archive',
+			];
+			$key = $single ? $value : (isset($value[0]) ? $value[0] : '');
+			$value = isset( $arr[ $key ] ) ? $arr[ $key ] : $value;
 		}
 
 		return $value;

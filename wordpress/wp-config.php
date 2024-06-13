@@ -1,4 +1,6 @@
 <?php
+define( 'WP_CACHE', false ); // Added by WP Rocket
+
 /**
  * The base configurations of the WordPress.
  *
@@ -16,8 +18,6 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('WP_CACHE', true);
-define( 'WPCACHEHOME', '/home/dh_a6u2y7/tfgdaw.dreamhosters.com/wp-content/plugins/wp-super-cache/' );
 define('DB_NAME', 'tfgdaw_dreamhosters_com_5');
 
 /** MySQL database username */

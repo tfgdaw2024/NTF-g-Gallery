@@ -17,21 +17,20 @@ import {
     Button
 } from "@wordpress/components";
 import { edit } from "@wordpress/icons";
-import { useEffect, useRef, useMemo } from "@wordpress/element";
+import { Fragment, useEffect, useRef } from "@wordpress/element";
 import { select, useSelect, useDispatch } from "@wordpress/data";
 import { useEntityProp, store as coreStore } from '@wordpress/core-data';
 import { crop, upload } from '@wordpress/icons';
 import { store as noticesStore } from '@wordpress/notices';
+import classnames from "classnames";
 
 /**
  * Internal depencencies
  */
-import classnames from "classnames";
-
 import Inspector from "./inspector";
 
 const {
-    duplicateBlockIdFix,
+    BlockProps,
     NoticeComponent
 } = window.EBControls;
 
@@ -47,10 +46,7 @@ export default function Edit(props) {
     const {
         attributes,
         setAttributes,
-        className,
-        clientId,
         isSelected,
-        name,
     } = props;
     const {
         resOption,
@@ -78,28 +74,22 @@ export default function Edit(props) {
         enableLink,
     } = attributes;
 
+    const enhancedProps = {
+        ...props,
+        blockPrefix: 'eb-advanced-image',
+        style: <Style {...props} />
+    };
+
     let urls = image.url;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
-        const BLOCK_PREFIX = "eb-advanced-image";
-        duplicateBlockIdFix({
-            BLOCK_PREFIX,
-            blockId,
-            setAttributes,
-            select,
-            clientId,
-        });
-
         // for old version support
         if (imgSource === undefined && image.url.length > 0) {
             setAttributes({ imgSource: 'custom' });
         }
     }, []);
 
-    const blockProps = useBlockProps({
-        className: classnames(className, `eb-guten-block-main-parent-wrapper`),
-    });
 
     // Get only urls
 
@@ -237,7 +227,6 @@ export default function Edit(props) {
             <SiteLogo
                 alt={alt}
                 attributes={attributes}
-                className={className}
                 containerRef={ref}
                 isSelected={isSelected}
                 setAttributes={setAttributes}
@@ -304,8 +293,8 @@ export default function Edit(props) {
             // style={{
             //     height: !!aspectRatio && '100%',
             //     width: !!aspectRatio && '100%',
-            //     ...borderProps.style,
-            //     ...shadowProps.style,
+            //     // ...borderProps.style,
+            //     // ...shadowProps.style,
             // }}
             >
                 {content}
@@ -485,9 +474,7 @@ export default function Edit(props) {
                 />
             )}
 
-            <div {...blockProps}>
-                <Style {...props} />
-
+            <BlockProps.Edit {...enhancedProps}>
                 {!imgSource && (
                     <>
                         <div className="eb-adv-img-editor-source-select">
@@ -636,7 +623,7 @@ export default function Edit(props) {
                             )}
                         </>
 
-                        {((imgSource === 'custom' && urls.length > 0) || (imgSource === 'featured-img' && featuredImage != 0)) && (
+                        {((imgSource === 'custom' && urls.length > 0) || (imgSource === 'featured-img' && typeof imagePostId == 'number' && featuredImage != 0)) && (
                             <>
                                 <BlockControls>
                                     <ToolbarGroup>
@@ -768,16 +755,21 @@ export default function Edit(props) {
                             </>
                         )}
 
-                        {imgSource === 'featured-img' && !featuredImage && (
+                        {imgSource === 'featured-img' && typeof imagePostId == 'number' && !featuredImage && (
                             <NoticeComponent
                                 Icon={AdvancedImageIcon}
                                 title={"Advanced Image"}
                                 description={postFeaturedImage}
                             />
                         )}
+                        {imgSource === 'featured-img' && typeof imagePostId == 'string' && (
+                            <div className="feature-image-placeholder">
+                                <img src={EssentialBlocksLocalize?.eb_plugins_url + "assets/images/user.jpg"} alt='featured image' />
+                            </div>
+                        )}
                     </>
                 )}
-            </div>
+            </BlockProps.Edit>
         </>
     );
 }

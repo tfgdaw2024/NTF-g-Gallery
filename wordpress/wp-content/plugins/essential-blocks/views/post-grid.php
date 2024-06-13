@@ -10,11 +10,16 @@
         $className
      ];
 
+    $wrapper_attributes = get_block_wrapper_attributes(
+		[
+			'class' => 'root-' . $blockId,
+		]
+	);
+
 ?>
-<?php echo "<div " . wp_kses_data( get_block_wrapper_attributes() ) . ">"; ?>
+<div <?php echo wp_kses_data( $wrapper_attributes); ?>>
     <div class="<?php echo esc_attr( implode( ' ', $_parent_classes ) ); ?>">
-        <div
-            class="<?php echo esc_attr( implode( ' ', $_wrapper_classes ) ); ?> eb-post-grid-wrapper"
+        <div class="<?php echo esc_attr( implode( ' ', $_wrapper_classes ) ); ?> eb-post-grid-wrapper"
             data-id="<?php echo esc_attr( $blockId ); ?>"
             data-querydata="<?php echo esc_attr( json_encode( $queryData ) ); ?>"
             data-attributes="<?php echo esc_attr( json_encode( $essentialAttr ) ); ?>">
@@ -33,13 +38,13 @@
                             'categories'    => $categories,
                             'essentialAttr' => $essentialAttr,
                             'showSearch'    => $showSearch
-                         ]
+                        ]
                     );
                 }
             ?>
 
 
-    <?php
+            <?php
         if ( ! $showTaxonomyFilter ) {
             /**
              * Add search form
@@ -53,17 +58,17 @@
 
         if ( ! empty( $posts ) ) {
             $_defined_vars = get_defined_vars();
-            $_params       = isset( $_defined_vars[ 'data' ] ) ? $_defined_vars[ 'data' ] : [  ];
+            $_params       = isset( $_defined_vars['data'] ) ? $_defined_vars['data'] : [];
 
             $_params = array_merge(
                 $_params,
                 [
                     'posts'      => $posts,
-                    'queryData'  => isset( $queryData ) ? $queryData : [  ],
-                    'source'     => isset( $queryData[ 'source' ] ) ? $queryData[ 'source' ] : 'post',
-                    'headerMeta' => ! empty( $headerMeta ) ? json_decode( $headerMeta ) : [  ],
-                    'footerMeta' => ! empty( $footerMeta ) ? json_decode( $footerMeta ) : [  ]
-                 ]
+                    'queryData'  => isset( $queryData ) ? $queryData : [],
+                    'source'     => isset( $queryData['source'] ) ? $queryData['source'] : 'post',
+                    'headerMeta' => ! empty( $headerMeta ) ? json_decode( $headerMeta ) : [],
+                    'footerMeta' => ! empty( $footerMeta ) ? json_decode( $footerMeta ) : []
+                ]
             );
             if ( $version === 'v2' ) {
                 echo '<div class="eb-post-grid-posts-wrapper">';
@@ -84,7 +89,7 @@
                 'common/no-content',
                 [
                     'content' => __( 'No Posts Found', 'essential-blocks' )
-                 ]
+                ]
             );
         }
 
@@ -96,7 +101,7 @@
                 $loadMoreOptions, $queryData, [
                     'posts'        => $posts,
                     'parent_class' => 'ebpostgrid-pagination'
-                 ]
+                ]
             ) );
         }
     ?>

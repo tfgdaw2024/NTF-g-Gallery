@@ -10,8 +10,13 @@
         'form-layout-' . $formLayout,
         $formStyle
     ];
+    $wrapper_attributes = get_block_wrapper_attributes(
+		[
+			'class' => 'root-' . $blockId,
+		]
+	);
 ?>
-<div <?php echo wp_kses_data( get_block_wrapper_attributes()); ?>>
+<div <?php echo wp_kses_data( $wrapper_attributes); ?>>
     <div class="<?php echo esc_attr( implode( ' ', $_parent_classes ) );?>">
         <div id="<?php echo esc_attr( $blockId );?>" class="<?php echo esc_attr( $blockId );?> eb-form-wrapper">
             <form id="<?php echo esc_attr( $formId );?>" class="<?php echo esc_attr( implode( ' ', $_form_classes ) );?>" action="">

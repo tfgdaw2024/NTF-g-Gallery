@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Templately – Gutenberg &amp; Elementor Template Library: 5000+ Free &amp; Pro Ready Templates &amp; Cloud! - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-28 15:28:22+0000\n"
+"PO-Revision-Date: 2024-06-11 06:39:28+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,10 @@ msgstr ""
 "X-Generator: GlotPress/4.0.1\n"
 "Language: es\n"
 "Project-Id-Version: Plugins - Templately – Gutenberg &amp; Elementor Template Library: 5000+ Free &amp; Pro Ready Templates &amp; Cloud! - Stable (latest release)\n"
+
+#: includes/Utils/Installer.php:179
+msgid "Failed to install theme"
+msgstr "Error al instalar el tema"
 
 #: includes/Core/Importer/Utils/Utils.php:14
 msgid "JSON file not exists. "
@@ -72,6 +76,67 @@ msgstr "La plataforma no está especificada. Inténtalo de nuevo después de esp
 msgid "WordPress Contents"
 msgstr "Contenidos de WordPress"
 
+#: includes/Core/Importer/FullSiteImport.php:227
+msgid "Permission Passed"
+msgstr "Permiso aprobado"
+
+#: includes/Core/Importer/FullSiteImport.php:218
+msgid "Upload directory is not writable."
+msgstr "No se puede escribir en el directorio de carga."
+
+#: includes/Core/Importer/FullSiteImport.php:186
+#: includes/Core/Importer/FullSiteImport.php:668 assets/js/templately.js:1
+msgid "Oops!"
+msgstr "¡Vaya!"
+
+#: includes/Core/Admin.php:53
+msgid "All Templates"
+msgstr "Todas las plantillas"
+
+#: includes/Core/Admin.php:50
+msgid "New Template"
+msgstr "Nueva plantilla"
+
+#: includes/Core/Admin.php:48
+msgid "Add New"
+msgstr "Añadir nuevo"
+
+#: includes/Core/Admin.php:47
+msgctxt "Add New on Toolbar"
+msgid "Book"
+msgstr "Reservar"
+
+#: includes/Core/Admin.php:46
+msgctxt "Admin Menu text"
+msgid "Theme Builder"
+msgstr "Constructor de temas"
+
+#: includes/Core/Admin.php:45
+msgctxt "Post type singular name"
+msgid "Theme Builder"
+msgstr "Constructor de temas"
+
+#: includes/Core/Admin.php:44
+msgctxt "Post type general name"
+msgid "Theme Builders"
+msgstr "Constructores de temas"
+
+#: includes/Builder/Types/Single.php:15
+msgid "Singles"
+msgstr "Individuales"
+
+#: includes/Builder/Types/Search.php:16
+msgid "Search Results"
+msgstr "Resultados de la búsqueda"
+
+#: includes/Builder/Types/Post.php:15
+msgid "Posts"
+msgstr "Entradas"
+
+#: includes/Builder/Types/Post.php:11
+msgid "Post"
+msgstr "Entrada"
+
 #: includes/API/SavedTemplates.php:29
 msgid "Sorry, you do not have permission to delete this template."
 msgstr "Lo siento, no tienes permisos para eliminar esta plantilla."
@@ -92,7 +157,7 @@ msgstr "Plantillas"
 msgid "View Template"
 msgstr "Ver plantilla"
 
-#: includes/Builder/Source.php:220 assets/js/templately.js:1
+#: includes/Builder/Source.php:222 assets/js/templately.js:1
 msgid "All"
 msgstr "Todo"
 

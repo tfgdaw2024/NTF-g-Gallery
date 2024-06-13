@@ -46,6 +46,7 @@ class ThemeBuilderApi extends API {
 
 		$post_data = [
 			'post_title' => $title,
+			'post_status' => 'publish',
 			'post_type' => 'templately_library'
 		];
 

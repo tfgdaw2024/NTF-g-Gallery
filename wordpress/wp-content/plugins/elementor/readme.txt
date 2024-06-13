@@ -4,8 +4,8 @@ Tags: page builder, editor, landing page, drag-and-drop, elementor,
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 3.21.4
-Beta tag: 3.21.0-beta3
+Stable tag: 3.21.8
+Beta tag: 3.22.0-beta3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -250,6 +250,26 @@ You can also add a new language via [translate.wordpress.org](https://go.element
 6. **Motion Effects** - Add entrance animations and transitions to any element in your website to captivate visitors.
 
 == Changelog ==
+
+= 3.21.8 - 2024-05-26 =
+
+* Fix: Can't click on the AI consent modal checkbox
+
+= 3.21.7 - 2024-05-22 =
+
+* Fix: Unnecessary commas cause Cron Jobs to fail in various scenarios ([#25803](https://github.com/elementor/elementor/issues/25803))
+* Fix: AI Consent modal requires multiple clicks to check the box
+
+= 3.21.6 - 2024-05-20 =
+
+* Security Fix: Improved code security enforcement in Icon Box and Image Box widgets
+* Fix: Console error related to the AI tooltip
+* Fix: Redirecting issue in AI Connect flow
+
+= 3.21.5 - 2024-05-08 =
+
+* Tweak: Improved AI Image variations to use an updated and simplified model
+* Fix: Editor History actions are not working as expected when using keyboard shortcuts ([#27030](https://github.com/elementor/elementor/issues/27030), [#25861](https://github.com/elementor/elementor/issues/25861))
 
 = 3.21.4 - 2024-04-30 =
 

@@ -26,7 +26,7 @@ class Source {
 	}
 
 	private function add_actions() {
-		add_filter( 'views_edit-' . self::CPT, [ $this, 'admin_print_tabs' ] );
+		add_filter( 'views_edit-' . self::CPT, [ $this, 'admin_print_tabs' ], 100 );
 		add_action( 'in_admin_header', [ $this, 'in_admin_header' ] );
 		if ( is_admin() ) {
 			// add_action( 'manage_posts_extra_tablenav', [ $this, 'extra_table_nav' ] );
@@ -70,7 +70,9 @@ class Source {
 			case 'template_type':
 				$types = $this->builder::$templates_manager->get_template_types();
 				$type  = get_post_meta( $post_id, self::TYPE_META_KEY, true );
-				echo call_user_func( [ $types[ $type ], 'get_title' ] );
+				if(isset($types[ $type ])){
+					echo call_user_func( [ $types[ $type ], 'get_title' ] );
+				}
 				break;
 			case 'template_platform':
 				echo get_post_meta( $post_id, self::PLATFORM_META_KEY, true );
@@ -233,6 +235,7 @@ class Source {
 		}
 
 		$this->builder::$views->get( 'builder/tabs', [ 'tabs' => $tabs, 'template_types' => $template_types ] );
+		return [];
 	}
 
 	/**

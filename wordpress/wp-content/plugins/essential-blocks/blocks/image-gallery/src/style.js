@@ -68,7 +68,6 @@ export default function Style(props) {
         loadmoreHvColor,
         loadmoreBGColor,
         loadmoreHvBGColor,
-        imagesPerPage,
         enableFilter,
         enableIsotope
     } = attributes;

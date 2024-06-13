@@ -1,5 +1,5 @@
-import { useBlockProps } from "@wordpress/block-editor";
-const { EBDisplayIcon } = window.EBControls;
+const { EBDisplayIcon, sanitizeURL, BlockProps } = window.EBControls;
+
 const Save = ({ attributes }) => {
     const {
         blockId,
@@ -18,7 +18,9 @@ const Save = ({ attributes }) => {
     } = attributes;
 
     return (
-        <div {...useBlockProps.save()}>
+        <BlockProps.Save
+            attributes={attributes}
+        >
             <div
                 className={`eb-parent-wrapper eb-parent-${blockId} ${classHook}`}
             >
@@ -28,7 +30,7 @@ const Save = ({ attributes }) => {
                 >
                     <a
                         className={"eb-button-parent eb-button-one"}
-                        href={buttonURLOne === '#' ? '' : buttonURLOne}
+                        href={buttonURLOne === '#' ? '' : sanitizeURL(buttonURLOne)}
                         {...(buttonOneNewWindow && { target: "_blank" })}
                         rel="noopener"
                     >
@@ -53,7 +55,7 @@ const Save = ({ attributes }) => {
 
                     <a
                         className={"eb-button-parent eb-button-two"}
-                        href={buttonURLTwo === '#' ? '' : buttonURLTwo}
+                        href={buttonURLTwo === '#' ? '' : sanitizeURL(buttonURLTwo)}
                         {...(buttonTwoNewWindow && { target: "_blank" })}
                         rel="noopener"
                     >
@@ -63,7 +65,7 @@ const Save = ({ attributes }) => {
                     </a>
                 </div>
             </div>
-        </div>
+        </BlockProps.Save>
     );
 };
 

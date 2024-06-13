@@ -34,6 +34,7 @@ class FullSiteImport extends Base {
 		$this->api_key  = Options::get_instance()->get( 'api_key' );
 
 		add_action( 'wp_ajax_templately_import_settings', [ $this, 'import_settings' ] );
+		add_action( 'wp_ajax_templately_pack_import_status', [ $this, 'import_status' ] );
 		add_action( 'wp_ajax_templately_pack_import', [ $this, 'import' ] );
 
 		if ( $this->dev_mode ) {
@@ -59,7 +60,13 @@ class FullSiteImport extends Base {
 			$data['logo'] = $logo_url;
 		}
 
-		wp_send_json_success( update_option( self::SESSION_OPTION_KEY, $data ) );
+		update_option( self::SESSION_OPTION_KEY, $data );
+
+		delete_transient('templately_fsi_log');
+
+		wp_send_json_success( [
+			'is_lightspeed' => !Helper::should_flush(),
+		] );
 	}
 
 	private function update_session_data( $data ): bool {
@@ -92,9 +99,13 @@ class FullSiteImport extends Base {
 		 	exit;
 		 }
 
-		header( "Cache-Control: no-store, no-cache" );
-		header( 'Content-Type: text/event-stream, charset=UTF-8' );
-		header( "Connection: Keep-Alive" );
+		 delete_transient( 'templately_fsi_log' );
+
+		 if(Helper::should_flush()){
+			header( "Cache-Control: no-store, no-cache" );
+			header( 'Content-Type: text/event-stream, charset=UTF-8' );
+			header( "Connection: Keep-Alive" );
+		}
 
 		if ( $GLOBALS['is_nginx'] ) {
 			header( 'X-Accel-Buffering: no' );
@@ -110,8 +121,9 @@ class FullSiteImport extends Base {
 		// Time to run the import!
 		set_time_limit( 0 );
 
-		flush();
-		if(!defined('TEMPLATELY_IGNORE_FLUSH_ALL') || !TEMPLATELY_IGNORE_FLUSH_ALL){
+
+		if(Helper::should_flush()){
+			flush();
 			wp_ob_end_flush_all();
 		}
 
@@ -178,6 +190,12 @@ class FullSiteImport extends Base {
 
 		// TODO: cleanup
 		$this->clear_session_data();
+	}
+
+	public function import_status(){
+		$log = get_transient( 'templately_fsi_log' );
+		// delete_transient( 'templately_fsi_log' );
+		wp_send_json( ['log' => $log] );
 	}
 
 	/**

@@ -21,7 +21,6 @@ import {
  */
 
 import objAttributes from "./attributes";
-import SortableContents from "./sortable-contents";
 import {
     typoPrefix_title,
     typoPrefix_price,
@@ -73,7 +72,7 @@ const {
     WoocommerceQuery,
     MorePosts,
     AdvancedControls,
-    ucFirst,
+    SortControl
 } = window.EBControls;
 
 const Inspector = ({ attributes, setAttributes, setQueryResults }) => {
@@ -533,11 +532,14 @@ const Inspector = ({ attributes, setAttributes, setQueryResults }) => {
                                         )}
                                         initialOpen={false}
                                     >
-                                        <SortableContents
-                                            contentLists={enableContents}
-                                            setAttributes={setAttributes}
-                                            ucFirst={ucFirst}
-                                        />
+                                        <SortControl
+                                            items={enableContents}
+                                            labelKey=""
+                                            onSortEnd={enableContents => setAttributes({ enableContents })}
+                                            hasSettings={false}
+                                            hasAddButton={false}
+                                            hasDelete={false}
+                                        ></SortControl>
                                     </PanelBody>
                                     {applyFilters(
                                         "eb_woo_product_grid_general_tab",

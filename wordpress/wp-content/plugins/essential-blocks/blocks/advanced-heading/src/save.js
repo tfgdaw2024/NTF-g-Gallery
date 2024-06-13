@@ -1,5 +1,5 @@
-import { RichText, useBlockProps } from "@wordpress/block-editor";
-const { EBDisplayIcon } = window.EBControls;
+import { RichText } from "@wordpress/block-editor";
+const { EBDisplayIcon, BlockProps } = window.EBControls;
 
 const Save = ({ attributes }) => {
     const {
@@ -25,7 +25,9 @@ const Save = ({ attributes }) => {
     const linkTarget = openInNewTab ? "_blank" : undefined;
 
     return (
-        <div {...useBlockProps.save()}>
+        <BlockProps.Save
+            attributes={attributes}
+        >
             <div
                 className={`eb-parent-wrapper eb-parent-${blockId} ${classHook}`}
             >
@@ -88,7 +90,7 @@ const Save = ({ attributes }) => {
                     )}
                 </div>
             </div>
-        </div>
+        </BlockProps.Save>
     );
 };
 

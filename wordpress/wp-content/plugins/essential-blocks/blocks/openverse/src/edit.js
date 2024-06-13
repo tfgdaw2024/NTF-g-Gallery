@@ -24,7 +24,7 @@ import classnames from "classnames";
 import Inspector from "./inspector";
 import Style from "./style";
 
-const { duplicateBlockIdFix } = window.EBControls;
+const { duplicateBlockIdFix, BlockProps } = window.EBControls;
 
 import SeachModal from "./template-components/searchModal";
 import DisplayImage from "./template-components/displayImage";
@@ -81,21 +81,12 @@ export default function Edit(props) {
         size: [],
     });
 
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        const BLOCK_PREFIX = "eb-openverse";
-        duplicateBlockIdFix({
-            BLOCK_PREFIX,
-            blockId,
-            setAttributes,
-            select,
-            clientId,
-        });
-    }, []);
-
-    const blockProps = useBlockProps({
-        className: classnames(className, `eb-guten-block-main-parent-wrapper`),
-    });
+    // you must declare this variable
+    const enhancedProps = {
+        ...props,
+        blockPrefix: 'eb-openverse',
+        style: <Style {...props} />
+    };
 
     const setimageAlign = (newAlign) => {
         switch (newAlign) {
@@ -278,8 +269,7 @@ export default function Edit(props) {
                 />
             </BlockControls>
 
-            <div {...blockProps}>
-                <Style {...props} />
+            <BlockProps.Edit {...enhancedProps}>
 
                 {imageurl && (
                     <>
@@ -410,7 +400,7 @@ export default function Edit(props) {
                         ></SeachModal>
                     </div>
                 </div>
-            </div>
+            </BlockProps.Edit>
         </>
     );
 }

@@ -4,7 +4,7 @@ namespace Templately\Builder\Types;
 
 class Error extends Single {
 	public static function get_type(): string {
-		return 'single';
+		return 'error';
 	}
 
 	public static function get_title(): string {

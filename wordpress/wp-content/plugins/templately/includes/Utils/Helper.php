@@ -196,4 +196,9 @@ class Helper extends Base {
 			}
 		}
 	}
+
+	public static function should_flush(){
+		return (!defined('TEMPLATELY_IGNORE_FLUSH_ALL') || !TEMPLATELY_IGNORE_FLUSH_ALL) && strpos($_SERVER['SERVER_SOFTWARE'], 'LiteSpeed') === false;
+	}
+
 }

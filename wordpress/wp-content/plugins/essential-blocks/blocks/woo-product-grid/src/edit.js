@@ -3,20 +3,17 @@
  */
 import { useEffect, useState } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
-import { useBlockProps } from "@wordpress/block-editor";
-import { select } from "@wordpress/data";
 import { applyFilters } from "@wordpress/hooks";
 
 const {
-    duplicateBlockIdFix,
     WoocommerceQuery,
+    BlockProps,
     BrowseTemplate
 } = window.EBControls;
 
 /**
  * Internal dependencies
  */
-import classnames from "classnames";
 import Style from "./style";
 import Inspector from "./inspector";
 import WooProductGridIcon from "./icon";
@@ -54,27 +51,19 @@ export default function Edit(props) {
     const [didMount, setDidMount] = useState(false);
 
     const is_woocommerce_active = EssentialBlocksLocalize?.get_plugins["woocommerce/woocommerce.php"]?.active;
-
+    const isContentEnabled = (contentName) => enableContents.includes(contentName);
+    // you must declare this variable
+    const enhancedProps = {
+        ...props,
+        blockPrefix: 'eb-woo-product',
+        style: <Style {...props} isContentEnabled={isContentEnabled} />
+    };
     // this useEffect is for creating an unique id for each block's unique className by a random unique number
     useEffect(() => {
         setTimeout(() => {
             setDidMount(true)
         }, 1500)
-        //Unique Id
-
-        const BLOCK_PREFIX = "eb-woo-product";
-        duplicateBlockIdFix({
-            BLOCK_PREFIX,
-            blockId,
-            setAttributes,
-            select,
-            clientId,
-        });
     }, []);
-
-    const blockProps = useBlockProps({
-        className: classnames(className, `eb-guten-block-main-parent-wrapper`),
-    });
 
     const customCartButtonText = (productType) => {
         switch (productType) {
@@ -93,7 +82,7 @@ export default function Edit(props) {
 
     const ratingHtml = (rating) => {
         let html = "";
-        for (let i = 1; i <= 5; i++) {
+        for (let i = 1;i <= 5;i++) {
             if (i <= rating) {
                 html += `<span class="eb-woo-product-rating filled"><i class="fas fa-star"></i></span>`;
             } else {
@@ -107,7 +96,7 @@ export default function Edit(props) {
         const totalPages = Math.floor(options.totalPosts / perPage);
         let html = "";
         html += `<button class="ebpg-pagination-item-previous">${options.prevTxt}</button>`;
-        for (let i = 1; i <= totalPages; i++) {
+        for (let i = 1;i <= totalPages;i++) {
             if (i === 1) {
                 html += `<button class="ebpg-pagination-item active">${i}</button>`;
             } else if (i <= 3) {
@@ -124,7 +113,7 @@ export default function Edit(props) {
     };
 
     const presetClass = "grid" === layout ? gridPreset : listPreset;
-    const isContentEnabled = (contentName) => enableContents.includes(contentName);
+
 
     return cover.length ? (
         <div>
@@ -152,7 +141,7 @@ export default function Edit(props) {
                 </>
             )}
 
-            <div {...blockProps}>
+            <BlockProps.Edit {...enhancedProps}>
                 {!is_woocommerce_active && (
                     <div>
                         <strong>WooCommerce</strong> is not installed/activated on your site. Please install and
@@ -463,7 +452,7 @@ export default function Edit(props) {
                         )}
                     </>
                 )}
-            </div>
+            </BlockProps.Edit>
         </>
     );
 }

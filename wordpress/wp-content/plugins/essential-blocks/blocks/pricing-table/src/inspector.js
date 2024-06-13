@@ -14,7 +14,6 @@ import {
     TabPanel,
     __experimentalDivider as Divider,
 } from "@wordpress/components";
-import { select } from "@wordpress/data";
 
 /**
  * Internal dependencies
@@ -61,10 +60,8 @@ import {
 } from "./constants/typographyPrefixConstants";
 
 import objAttributes from "./attributes";
-import SortableFeatures from "./sortable-features";
 
 const {
-    faIcons,
     ColorControl,
     ResponsiveRangeController,
     ResponsiveDimensionsControl,
@@ -73,7 +70,8 @@ const {
     BorderShadowControl,
     AdvancedControls,
     DynamicInputControl,
-    EBIconPicker
+    EBIconPicker,
+    SortControl
 } = window.EBControls;
 
 const Inspector = ({ attributes, setAttributes }) => {
@@ -81,13 +79,10 @@ const Inspector = ({ attributes, setAttributes }) => {
         resOption,
         pricingStyle,
         title,
-        defaultSubtitle,
         showSubtitle,
         subtitle,
         showHeaderIcon,
-        defaultHeaderIcon,
         headerIcon,
-        defaultTitleLine,
         showTitleLine,
         mainPrice,
         showOnSale,
@@ -97,7 +92,6 @@ const Inspector = ({ attributes, setAttributes }) => {
         pricePeriod,
         periodSeparator,
         hideFeatures,
-        features,
         showButton,
         buttonIcon,
         buttonIconPosition,
@@ -135,6 +129,8 @@ const Inspector = ({ attributes, setAttributes }) => {
         newWindow,
         showFeatureLine,
         pricingTopBgColor,
+        showFeatureIcon,
+        featureIcon
     } = attributes;
 
     const resRequiredProps = {
@@ -151,7 +147,7 @@ const Inspector = ({ attributes, setAttributes }) => {
             {
                 icon: "fas fa-check",
                 text: `Feature ${count}`,
-                color: "#03bb89",
+                color: "var(--eb-global-primary-color)",
             },
         ];
 
@@ -250,6 +246,59 @@ const Inspector = ({ attributes, setAttributes }) => {
     //     }
     // };
 
+    const getFeaturesComponents = () => {
+        const onFeatureChange = (key, value, position) => {
+            const newFeature = { ...attributes.features[position] };
+            const newFeatureList = [...attributes.features];
+            newFeatureList[position] = newFeature;
+            newFeatureList[position][key] = value;
+            setAttributes({ features: newFeatureList });
+        };
+
+        return attributes.features.map((each, i) => (
+            <div key={i}>
+                <TextControl
+                    onChange={(value) => onFeatureChange("text", value, i)}
+                    label={__(
+                        "Text",
+                        "essential-blocks"
+                    )}
+                    value={each.text}
+                />
+                <ToggleControl
+                    label={__("Link", "essential-blocks")}
+                    checked={each.clickable === "true"}
+                    onChange={(value) =>
+                        onFeatureChange("clickable", value.toString(), i)
+                    }
+                />
+                {each.clickable === "true" && (
+                    <TextControl
+                        label={__("Link", "essential-blocks")}
+                        value={each.link}
+                        onChange={(value) => onFeatureChange("link", value, i)}
+                    />
+                )}
+                {featureIcon && (
+                    <>
+                        <EBIconPicker
+                            value={each.icon}
+                            onChange={(value) => onFeatureChange("icon", value, i)}
+                        />
+
+                        {each.icon && (
+                            <ColorControl
+                                label={__("Icon Color", "essential-blocks")}
+                                color={each.color}
+                                onChange={(value) => onFeatureChange("color", value, i)}
+                            />
+                        )}
+                    </>
+                )}
+            </div>
+        ))
+    }
+
     return (
         <InspectorControls key="controls">
             <div className="eb-panel-control">
@@ -312,7 +361,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                                 handlePricingStyle(pricingStyle)
                                             }
                                         /> */}
-                                        
+
                                         <TextControl
                                             label={__(
                                                 "Title",
@@ -510,16 +559,28 @@ const Inspector = ({ attributes, setAttributes }) => {
                                                         });
                                                     }}
                                                 />
+                                                <ToggleControl
+                                                    label={__("Show Icon?")}
+                                                    checked={showFeatureIcon}
+                                                    onChange={() => {
+                                                        setAttributes({
+                                                            showFeatureIcon: !showFeatureIcon,
+                                                        });
+                                                    }}
+                                                />
 
-                                                <SortableFeatures
+                                                {/*<SortableFeatures
                                                     features={
                                                         attributes.features
+                                                    }
+                                                    featureIcon={
+                                                        attributes.showFeatureIcon
                                                     }
                                                     setAttributes={
                                                         setAttributes
                                                     }
-                                                />
-                                                <Button
+                                                />*/}
+                                                {/*<Button
                                                     className="eb-pricebox-feature-button"
                                                     label={__(
                                                         "Add feature",
@@ -534,7 +595,21 @@ const Inspector = ({ attributes, setAttributes }) => {
                                                             "essential-blocks"
                                                         )}
                                                     </span>
-                                                </Button>
+                                                </Button>*/}
+
+                                                <SortControl
+                                                    items={attributes.features}
+                                                    labelKey={'text'}
+                                                    onSortEnd={features => setAttributes({ features })}
+                                                    onDeleteItem={index => {
+                                                        setAttributes({ features: attributes.features.filter((each, i) => i !== index) })
+                                                    }}
+                                                    hasSettings={true}
+                                                    settingsComponents={getFeaturesComponents()}
+                                                    hasAddButton={true}
+                                                    onAddItem={onFeatureAdd}
+                                                    addButtonText={__("Add Features", "essential-blocks")}
+                                                ></SortControl>
                                             </>
                                         )}
                                     </PanelBody>
@@ -1299,18 +1374,21 @@ const Inspector = ({ attributes, setAttributes }) => {
                                                 })
                                             }
                                         />
-                                        <ResponsiveRangeController
-                                            baseLabel={__(
-                                                "Icon Size",
-                                                "essential-blocks"
-                                            )}
-                                            controlName={featuresIconSize}
-                                            resRequiredProps={resRequiredProps}
-                                            min={0}
-                                            max={50}
-                                            step={1}
-                                            noUnits
-                                        />
+                                        {showFeatureIcon && (
+                                            <ResponsiveRangeController
+                                                baseLabel={__(
+                                                    "Icon Size",
+                                                    "essential-blocks"
+                                                )}
+                                                controlName={featuresIconSize}
+                                                resRequiredProps={resRequiredProps}
+                                                min={0}
+                                                max={50}
+                                                step={1}
+                                                noUnits
+                                            />
+                                        )}
+
                                         <TypographyDropdown
                                             baseLabel={__(
                                                 "Typography",

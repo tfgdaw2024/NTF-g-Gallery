@@ -10,9 +10,10 @@ export default function socialLinks({ profilesOnly, icnEffect }) {
                             " ",
                         ])[1]
                             }-original ${icnEffect || " "}`}
-                        href={sanitizeURL(link)}
+                        href={link === '#' ? '' : sanitizeURL(link)}
                         target={linkOpenNewTab ? "_blank" : "_self"}
                         rel="noopener"
+                        aria-label="social link"
                     >
                         <i className={`hvr-icon eb-social-icon ${icon}`}></i>
                     </a>

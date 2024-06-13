@@ -242,3 +242,13 @@
 	align-items: center;
 	margin: 0 auto;
 }
+
+.feature-image-placeholder {
+	width: 100%;
+	background: #EAEEF9;
+	text-align: center;
+
+	img {
+		width: 300px;
+	}
+}
